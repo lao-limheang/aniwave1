@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+*{
+    font-family: 'Inter';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}  
+.container .logo img{
+    width: 50px;
+}
+.container .dashboard .logo{
+    position: absolute;
+    top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.container .dashboard {
+    background-color: #09090b;
+    text-align: start;
+    height: 100vh;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.container .dashboard ul{
+    list-style: none;
+    width: 100%;
+    padding-left: 0;
+}
+.container .dashboard .logout{
+    position: absolute;
+    bottom: 5%;
+    text-align: center;
+    width: 200px;
+}
+.container .dashboard .logout:hover a{
+    background-color: #c50101;
+    transition: 0.5s ease-in-out;
+}
+.container .dashboard .logout a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgrey;
+    transition: 0.5s ease-in-out;
+}
+.container .dashboard .nav-links .hiden{
+    display: none;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-size: 24px;
+    cursor: pointer;
+}
+.container .dashboard ul li{
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    border-radius: 15px;
+}
+.container .dashboard ul li:hover{
+    background-color: #c50101;
+    transition: 0.5s ease-in-out;
+}
+.container .dashboard ul li:active{
+    background-color: #860000;
+}
+.container .dashboard ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.container .overview{
+    background-color: #121214;
+    width: 90%;
+}
+.container .overview .navbar{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding:  20px;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.container .overview .navbar .search .seo-icon{
+    position: absolute;
+    color: rgb(99, 99, 99);
+    top: 55px;
+    padding-left: 10px;
+    width: 30px;
+}
+.container .overview .navbar .search input{
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid gray;
+    background-color: white;
+    padding: 0 10px;
+    border-radius: 10px;
+    padding-left: 40px;
+    transition: 0.3s ease-in-out;
+}
+.container .overview .navbar .search input:focus{
+    outline: none;
+    width: 350px;
+    transition: 0.3s ease-in-out;
+}
+.container .overview .content{
+    padding: 20px;
+    color: white;
+}
+.container .overview .content .title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.container .overview .content .title .layout{
+    color: #c50101;
+}
+.container .overview .content .cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.container .overview .content .cards .card{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e1e20;
+    border-radius: 15px;
+    padding: 30px;
+    width: 250px;
+}
+.container .overview .content .cards .card .card-icon{
+    color: #c50101;
+}
+.container .overview .recent {
+    background-color: #1e1e20;
+    border-radius: 15px;
+    color: white;
+    margin: 20px;
+}
+.container .overview .recent h2{
+    padding: 20px;
+}
+.container .overview .recent table{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+.container .overview .recent table thead{
+    background-color: #0e0e0e;
+}
+.container .overview .recent table thead th{
+    padding: 15px;
+}
+.container .overview .recent table tbody tr{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.37);
+}
+.container .overview .recent table tbody tr td{
+    padding: 15px;
+}
+
+.container .overview .recent table tbody tr td:first-child{
+    font-weight: bold;
+}
+.container .overview .recent table tbody tr td:last-child{
+    color: #01c51b;
+    font-weight: bold;
+}
+@media only screen and (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
+    .container .dashboard .nav-links .hiden{
+        display: block;
+    }
+    .container .dashboard .nav-links{
+        display: flex;
+        align-items: center;
+    }
+    .container .dashboard ul{
+        display: none;
+        position: absolute;
+        top: 70px;
+        background-color:#1e1e20 ;
+        left: 0;
+        z-index: 10;
+        transition: all 0.5s ease-in-out;
+    }
+    .container .dashboard .nav-links .hiden:hover + ul{
+        display: block;
+    }
+    .container .dashboard {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+        align-items: center;
+    }
+    .container .dashboard .logout{
+        position: static;
+        width: auto;
+        margin-top: 10px;
+        margin-right: 40px;
+    }
+    .container .dashboard .logo{
+        position: static;
+    }
+    .container .overview{
+        width: 100%;
+    }
+    .container .overview .navbar .profile{
+        display: none;
+    }
+    .container .overview .navbar .search .seo-icon{
+        top: 130px;
+    }
+}

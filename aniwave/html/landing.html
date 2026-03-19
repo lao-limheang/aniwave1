@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aniwave</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../css/index.css"/>
+    <link rel="icon" href="image.png" type="image/icon">
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo"> <img src="../img/logo.png" alt="logo"/> ANIWAVE</a>
+      
+      <ul id="menuList">
+        <li><a href="">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Get Start</a></li>
+      </ul>
+      <div class="main">
+        <a href="../html/index.html" class="user"> <i data-lucide="log-in"></i> Login</a>
+        <button type="button"><a href="../html/Register.html">Register</a></button>
+      </div>
+      <i class="bar-icon" onclick="toggleMenu()" data-lucide="menu"></i>
+        
+      <script>
+        function toggleMenu() {
+        const menu = document.getElementById("menuList");
+        if (menu.style.display === "block") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "block";
+        }
+        }
+      </script>
+    </header>
+
+    <div class="bg1">
+      <div class="box1">
+        <p>Welcome to Aniwave</p>
+      </div>
+      <h1 class="h1-top"><span class="redtext">Free & HD</span> Anime Website for Anime Fans</h1>
+      <!-- class="h1-buttom" -->
+      <p>Watch high-quality Anime anytime, anywhere, completely free.</p>
+      <div>
+        <button type="button" class="button1">
+          <i data-lucide="play"> </i> <a href="#"> Explore now</a>
+        </button>
+        <button type="button" class="button2">
+           <a href="#bg3">Get started </a>  <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="bg2">
+      <h2>More Than Just A <span class="redtext">Website</span></h2>
+      <p>
+        We started with a simple idea: Anime should be free and accessible to
+        everyone. Thoday,
+      </p>
+      <p>Aniwave is the largest community-driven streaming platform</p>
+      <div class="boxcontainer">
+        <div class="bigbox1">
+          <div class="smallbox"><i data-lucide="zap"></i></div>
+          <div class="txt"><br>
+            <p><b>Our Vision</b></p><br>
+            <p>To provide the fastest, highest quality anime streaming experience to fans worldwide without any paywalls or restrictions.</p>
+          </div>
+        </div>
+
+        <div class="bigbox1">
+          <div class="smallbox">
+            <i data-lucide="globe"></i>
+          </div>
+          <div class="txt"><br>
+            <p><b>Our Vision</b></p><br>
+            <p>Connecting cultures through stories. We envision a world where Japanese animation is easily enjoyed by everyone, regardless of location.</p>
+          </div>
+        </div>
+
+        <div class="bigbox1">
+          <div class="smallbox"><i data-lucide="users"></i></div>
+          <div class="txt"><br>
+            <p><b>Our Vision</b></p><br>
+            <p>Built by fans, for fans. Our platform evolves based on what you want to see. Join our Discord and be part of the movement.</p>
+          </div>
+        </div>
+      </div>
+      <div class="longbox">
+        <div class="card">
+          <i data-lucide="tv-minimal-play"></i>
+          <div class="card_txt">
+            <p>HD Quality</p>
+            <p style="color: dimgray;">1080/4k</p>
+          </div>
+        </div>
+        <div class="card">
+          <i data-lucide="youtube"></i>
+          <div class="card_txt">
+            <div class="card_txt">
+            <p>Fast</p>
+            <p style="color: dimgray;">No-Buffering</p>
+          </div>
+        </div>
+        </div>
+        <div class="card">
+          <i data-lucide="shield-alert"></i>
+          <div class="card_txt">
+            <p>Security</p>
+            <p style="color: dimgray;">No Pop-up ads</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg3" id="bg3">
+      <div><h2>Start Your Adventure <span class="redtext h2two">Today!</span></h2></div>
+        <p>
+          Join a community of millions of fan. don't let your entertainment nt be limited.</p>
+        <div class="startbtn">
+          <button type="button" class="button1"><i data-lucide="circle-play"></i><a href="#">Start watching now</a></button>
+        </div>
+        <!-- <div class="endbutton"></div> -->
+      </div>
+    </div>
+  <div class="footer-bar">
+    <p>&copy; 2025 Aniwave. All rights reserved.</p>
+    <div class="icons">
+      <a href="#"><i data-lucide="youtube"></i></a>
+      <a href="#"><i data-lucide="facebook"></i></a>
+      <a href="#"><i data-lucide="music-2"></i></a>
+    </div>
+  </div>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

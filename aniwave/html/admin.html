@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Aniwave Management</title>
+    <link rel="icon" href="../image/image.png" type="image/icon">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        body { background-color: #050505; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-red-950/20 border-r border-red-900/30 p-6 hidden md:block">
+            <div class="flex items-center gap-3 mb-10">
+                <img src="../image/image.png" alt="logo" width="40">
+                <h2 class="text-xl font-bold tracking-widest text-red-500">ANIWAVE</h2>
+            </div>
+            <nav class="space-y-4">
+                <a href="#" class="flex items-center gap-3 p-3 bg-red-900 rounded-lg"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-red-900/50 rounded-lg transition"><i data-lucide="film"></i> Manage Videos</a>
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-red-900/50 rounded-lg transition"><i data-lucide="users"></i> Users</a>
+                <a href="#" class="flex items-center gap-3 p-3 hover:bg-red-900/50 rounded-lg transition text-gray-400 mt-20"><i data-lucide="log-out"></i> Logout</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6">
+            <header class="flex justify-between items-center mb-8">
+                <h1 class="text-2xl font-bold flex items-center gap-2">
+                    <i data-lucide="settings" class="text-red-500"></i> ប្រព័ន្ធគ្រប់គ្រង Anime
+                </h1>
+                <div class="flex items-center gap-3">
+                    <span class="font-medium">Administrator</span>
+                    <div class="w-10 h-10 bg-red-900 rounded-full flex items-center justify-center">A</div>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="bg-gray-900 p-6 rounded-xl border border-white/5">
+                    <p class="text-gray-400">Total Videos</p>
+                    <h3 id="count-vdo" class="text-3xl font-bold">0</h3>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-xl border border-white/5">
+                    <p class="text-gray-400">Status</p>
+                    <h3 class="text-3xl font-bold text-green-500">Online</h3>
+                </div>
+            </div>
+
+            <section class="bg-gray-900/50 p-6 rounded-2xl border border-red-900/20 mb-10">
+                <h2 id="form-title" class="text-xl font-bold mb-6 text-red-400">បញ្ចូល ឬ កែប្រែព័ត៌មាន</h2>
+                
+                <input type="hidden" id="anime-id">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">ផ្ទៀងផ្ទាត់ឈ្មោះ (សម្រាប់ការ Update)</label>
+                            <input type="text" id="target-name" placeholder="វាយឈ្មោះដើមឱ្យត្រូវដើម្បី Update" 
+                                class="w-full bg-black border border-gray-700 p-3 rounded-lg focus:border-red-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">ចំណងជើង Anime</label>
+                            <input type="text" id="new-title" placeholder="ចំណងជើងថ្មី..." 
+                                class="w-full bg-black border border-gray-700 p-3 rounded-lg focus:border-red-500 outline-none transition">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">Link វីដេអូ (Direct URL)</label>
+                            <input type="text" id="new-url" placeholder="https://example.com/video.mp4" 
+                                class="w-full bg-black border border-gray-700 p-3 rounded-lg focus:border-red-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">ការពិពណ៌នា (Description)</label>
+                            <textarea id="new-desc" rows="1" placeholder="ព័ត៌មានលម្អិត..." 
+                                class="w-full bg-black border border-gray-700 p-3 rounded-lg focus:border-red-500 outline-none transition"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3 mt-8">
+                    <button onclick="handleInsert()" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl font-bold transition flex items-center gap-2">
+                        <i data-lucide="plus-circle"></i> បញ្ចូលថ្មី
+                    </button>
+                    <button onclick="handleUpdate()" class="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-xl font-bold transition flex items-center gap-2">
+                        <i data-lucide="edit-3"></i> Update តាមឈ្មោះ
+                    </button>
+                    <button onclick="resetForm()" class="bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-xl transition">សម្អាត</button>
+                </div>
+            </section>
+
+            <section class="bg-gray-900/30 rounded-2xl overflow-hidden border border-white/5">
+                <table class="w-full text-left">
+                    <thead class="bg-red-950/30 text-red-400 uppercase text-sm">
+                        <tr>
+                            <th class="p-4">ចំណងជើង</th>
+                            <th class="p-4">ការពិពណ៌នា</th>
+                            <th class="p-4">សកម្មភាព</th>
+                        </tr>
+                    </thead>
+                    <tbody id="anime-tbody">
+                        </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, updateDoc, doc, deleteDoc, onSnapshot, query, where, getDocs } 
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // CONFIG របស់អ្នក
+        const firebaseConfig = {
+            apiKey: "AIzaSyDFo8hcoCKOvbxnu7fUA3O_O8GDLwyY9YA",
+            authDomain: "aniwave-2026.firebaseapp.com",
+            projectId: "aniwave-2026",
+            storageBucket: "aniwave-2026.firebasestorage.app",
+            messagingSenderId: "239171057133",
+            appId: "1:239171057133:web:3d2824ebdd1cbd880c23e4",
+            measurementId: "G-5CFH2WY84R"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const animeCol = collection(db, "animes");
+
+        // --- ១. បញ្ចូលទិន្នន័យថ្មី (Insert) ---
+        window.handleInsert = async () => {
+            const title = document.getElementById('new-title').value;
+            const desc = document.getElementById('new-desc').value;
+            const url = document.getElementById('new-url').value;
+
+            if(!title || !url) return alert("សូមបំពេញចំណងជើង និង URL វីដេអូ!");
+
+            try {
+                await addDoc(animeCol, { title, description: desc, url, createdAt: new Date() });
+                alert("បានរក្សាទុកជោគជ័យ!");
+                resetForm();
+            } catch(e) { console.error(e); }
+        };
+
+        // --- ២. កែប្រែទិន្នន័យ (Update) ជាមួយការផ្ទៀងផ្ទាត់ឈ្មោះ ---
+        window.handleUpdate = async () => {
+            const id = document.getElementById('anime-id').value;
+            const targetName = document.getElementById('target-name').value;
+            const title = document.getElementById('new-title').value;
+            const desc = document.getElementById('new-desc').value;
+            const url = document.getElementById('new-url').value;
+
+            if(!id) return alert("សូមចុច 'ជ្រើសរើស' លើ Anime ក្នុងតារាងសិន!");
+            if(!targetName) return alert("សូមវាយឈ្មោះដើមក្នុងប្រអប់ផ្ទៀងផ្ទាត់!");
+
+            // ឆែកមើលឈ្មោះក្នុង Database ថាត្រូវនឹងអ្វីដែលអ្នកប្រើវាយឬអត់
+            const q = query(animeCol, where("title", "==", targetName));
+            const querySnapshot = await getDocs(q);
+
+            if (querySnapshot.empty) {
+                alert("ឈ្មោះមិនត្រឹមត្រូវ! អ្នកមិនមានសិទ្ធិកែប្រែព័ត៌មាននេះទេ។");
+                return;
+            }
+
+            try {
+                await updateDoc(doc(db, "animes", id), {
+                    title: title,
+                    description: desc,
+                    url: url
+                });
+                alert("បានធ្វើបច្ចុប្បន្នភាព (Update) រួចរាល់!");
+                resetForm();
+            } catch(e) { console.error(e); }
+        };
+
+        // --- ៣. លុបទិន្នន័យ (Delete) ---
+        window.deleteAnime = async (id) => {
+            if(confirm("តើអ្នកចង់លុបវីដេអូនេះមែនទេ?")) {
+                await deleteDoc(doc(db, "animes", id));
+            }
+        };
+
+        // --- ៤. បង្ហាញទិន្នន័យ Real-time ---
+        onSnapshot(animeCol, (snapshot) => {
+            const tbody = document.getElementById('anime-tbody');
+            const countDisplay = document.getElementById('count-vdo');
+            tbody.innerHTML = "";
+            countDisplay.innerText = snapshot.size;
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                tbody.innerHTML += `
+                    <tr class="border-b border-white/5 hover:bg-white/5 transition">
+                        <td class="p-4 font-bold text-white">${data.title}</td>
+                        <td class="p-4 text-gray-400 text-sm truncate max-w-xs">${data.description || '...'}</td>
+                        <td class="p-4 flex gap-3">
+                            <button onclick="fillEditForm('${doc.id}', '${data.title}', '${data.description}', '${data.url}')" 
+                                class="text-blue-400 hover:text-blue-300 font-medium">ជ្រើសរើស</button>
+                            <button onclick="deleteAnime('${doc.id}')" 
+                                class="text-red-500 hover:text-red-400 font-medium">លុប</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        });
+
+        // មុខងារជំនួយ
+        window.fillEditForm = (id, title, desc, url) => {
+            document.getElementById('anime-id').value = id;
+            document.getElementById('new-title').value = title;
+            document.getElementById('new-desc').value = desc;
+            document.getElementById('new-url').value = url;
+            document.getElementById('target-name').focus();
+            document.getElementById('form-title').innerText = "កំពុងកែប្រែ៖ " + title;
+        };
+
+        window.resetForm = () => {
+            document.getElementById('anime-id').value = "";
+            document.getElementById('target-name').value = "";
+            document.getElementById('new-title').value = "";
+            document.getElementById('new-desc').value = "";
+            document.getElementById('new-url').value = "";
+            document.getElementById('form-title').innerText = "បញ្ចូល ឬ កែប្រែព័ត៌មាន";
+        };
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

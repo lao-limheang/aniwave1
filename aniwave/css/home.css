@@ -1,0 +1,17 @@
+#slider{
+    animation: slide-fade 15s infinite;
+}
+@keyframes slide-fade {
+    0% {
+        background-image: url('../image/banner1.png');
+        opacity: 1;
+    }
+    50% {
+        background-image: url('../image/banner2.png');
+        opacity: 1;
+    }
+    100% {
+        background-image: url('../image/banner3.png');
+        opacity: 1;
+    }
+}
